@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
+using ESI.NET;
 using System.IO;
 
 namespace EveDiscordBot
@@ -27,6 +28,7 @@ namespace EveDiscordBot
 
             await _client.LoginAsync(TokenType.Bot, token);
             await _client.StartAsync();
+
 
             // Block this task until the program is closed.
             await Task.Delay(-1);
