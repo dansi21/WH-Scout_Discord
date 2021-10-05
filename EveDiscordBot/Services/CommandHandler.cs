@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace EveDiscordBot.Services
 {
@@ -69,6 +70,7 @@ namespace EveDiscordBot.Services
             // the command was successful, we don't care about this result, unless we want to log that a command succeeded.
             if (result.IsSuccess)
                 return;
+
 
             // the command failed, let's notify the user that something happened.
             await context.Channel.SendMessageAsync($"error: {result}");
