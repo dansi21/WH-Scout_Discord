@@ -20,6 +20,13 @@ namespace EveDiscordBot.Modules
             return ReplyAsync("pong!"); 
         }
 
+        [Command("help")]
+        [Alias("commands", "Help")]
+        public Task HelpAsync()
+        {
+            return ReplyAsync("Commands! \n-ping *Check if the bot is running\n-Scout *Quickly get info on a system");
+        }
+
         // Get info on a user, or the user who invoked the command if one is not specified
         [Command("userinfo")]
         public async Task UserInfoAsync(IUser user = null)
@@ -29,11 +36,10 @@ namespace EveDiscordBot.Modules
             await ReplyAsync(user.ToString());
         }
 
-        [Command("Scout")]
+        [Command("scout")]
         public async Task SearchSystem([Remainder] string reason = null)
         {
             string SystemResponse = EveClient.SearchSystem(reason).Result;
-
             await ReplyAsync(SystemResponse);
         }
     }

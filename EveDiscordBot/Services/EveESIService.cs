@@ -9,12 +9,14 @@ using ESI.NET.Enumerations;
 using Microsoft.Extensions.Options;
 using EveDiscordBot.Models;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace EveDiscordBot.Services
 {
     public class EveESIService
     {
         private EsiClient client;
+        private static readonly HttpClient HTTPclient = new HttpClient();
 
         public EveESIService() {
 
@@ -42,6 +44,12 @@ namespace EveDiscordBot.Services
             EsiResponse<ESI.NET.Models.Universe.SolarSystem> SystemData = await client.Universe.System(searchResults.Data.Systems[0].Id);
 
             return SystemData.Data.Name + " : " + SystemData.Data.SecurityStatus;
+        }
+
+        public async Task<string> zKillQuery(string systemID) {
+            HTTPclient.DefaultRequestHeaders.Add("User-Agent", "github.com/dansi21");
+            string value = await HTTPclient.GetStringAsync();
+
         }
 
     }
